@@ -1,0 +1,328 @@
+-namespace module="utils.formatters" name="formatters" inheritable="True"
+
+doctype 5
+html lang="en"
+  head
+    title CKAN Introduction with zh_TW
+    meta charset="utf-8"
+    meta name="viewport" content="width=792, user-scalable=no"
+    meta http-equiv="x-ua-compatible" content="ie=edge"
+    link rel="stylesheet" href="shower/themes/ribbon/styles/screen.css"
+    link rel="stylesheet" href="pygment_style.css"
+    /*link rel="stylesheet" href="pastie.css"*/
+    link rel="stylesheet" href="font-awesome/css/font-awesome.css"
+
+    -scss
+      /*** Fundamental styles ***/
+      $pylons_red: #e00100;
+      $pylons_blue: #124a7e;
+      $grey: #2A2B2D;
+      .red { color: $pylons_red; }
+      .blue { color: $pylons_blue; }
+      .grey { color: $grey; }
+
+      .slide a {
+        border-bottom: none;
+        text-decoration: none;
+      }
+
+      @font-face {
+        font-family: 'Ubuntu Mono';
+        src: url('fonts/UbuntuMono-R.ttf') format('truetype');
+      }
+      @font-face {
+        font-family: 'Ubuntu';
+        src: url('fonts/Ubuntu-R.ttf') format('truetype');
+      }
+      section {
+        font-family: 'Ubuntu', sans-serif;
+        code {
+          font-family: 'UbuntuMono', monospace;
+        }
+      }
+
+      mark, h2 mark {
+        color: $pylons_red;
+        border-radius: 6px;
+        line-height: 1.4;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      /*font-awesome tweak*/
+      i.icon {
+        text-indent: 0;
+        font-style: normal;
+      }
+
+      .shout {
+        &.small {
+          h2 {
+            font-size: 4em;
+            mark {
+              line-height: 1.4;
+            }
+          }
+        }
+      }
+
+      .smaller {
+        font-size: smaller;
+      }
+      .underline, a.underline {
+        text-decoration: none;
+        border-bottom:0.1em solid;
+      }
+
+      /*** Slids styles ***/
+
+      #Cover {
+        h2 {
+          margin: 30px 0 0;
+          color: #FFF;
+          text-align: center;
+          font-size: 70px;
+        }
+        p {
+          margin: 10px 0 0;
+          text-align: center;
+          color: #FFF;
+          font-style: italic;
+          font-size: 20px;
+          a {
+            color:#FFF;
+          }
+        }
+      }
+
+      section.slide div {
+        h2 {
+          color: $pylons_blue;
+          font-size: 2.25em;
+        }
+        font-size: 1.25em;
+      }
+
+  body.list
+
+    header.caption
+      h1 CKAN Introduction with zh_TW
+      p Keith Yang
+
+    section#Cover.slide.cover: div
+      h2 CKAN Introduction with zh_TW
+      p
+        a href="http://quest.keitheis.org" Keith Yang
+          ,
+          i.icon.icon-heart
+      p
+        | @keitheis
+
+    section#keitheis.slide: div
+      h2
+        span.red.pull-right @keitheis
+        Keith Yang
+      p
+        ul
+          li, architect.py in
+            a href="http://www.biideal.com/"
+              | biideal.com
+          li, Organizer/Coordinator in
+            a href="http://taipei.python.org.tw/"
+              Taipei.py
+          li, Web Lead in
+            a href="http://tw.pycon.org/2013/"
+              | PyCon Taiwan 2013
+          li, Thinking of PyCon Taiwan 2014
+
+    section#ckan-and-me.slide: div
+      h2 CKAN & me
+      p
+        ul
+          li 3 months experience & CKAN (1.8) with zh_TW
+          li 3 years experience & Pylons
+          li ~1 year experience &
+            ,
+            a href="http://docs.pylonsproject.org/en/latest/faq/pyramid.html" target="_blank"
+              Pyramid
+          li n years experience & Web, System Admin, Open Source
+
+    section#survey.slide: div
+      h2 Survey:
+      p
+        ol
+          li Installed CKAN?
+          li Internationalization (i18n) and/or Localization (l10n) on CKAN?
+          li Create Organizations on CKAN?
+          li No experience?
+          li.next Well, just walking by?
+
+    section#what-is-ckan.slide: div
+      h2 
+        img src="pictures/ckan-logo.png" alt="CKAN"
+          a href="http://ckan.org/"
+      p “...
+        ,
+        b.underline Powerful data management system
+        ,
+        | that makes data accessible – by providing tools to streamline publishing, sharing, finding and using data.”
+      p Backed by 
+        ,
+        a href="http://okfn.org/about/"
+          Open Knowledge Foundation (OKF)
+
+    section#good-news.slide.shout: div
+      h2 Good news
+
+    section#ckan-2-release.slide: div
+      h2 CKAN 2.0 Release
+      p
+        ul
+          li Jinja2 - easier template and theme
+          li Authorisation and workflow:
+            ul
+              li Introducing CKAN ‘Organizations’
+          li More built-in previews
+          li.grey
+            a.smaller.underline href="http://blog.okfn.org/2013/05/10/announcing-ckan-2-0/"
+              | # Announcing CKAN 2.0 | Open Knowledge Foundation Blog
+
+    section#ckan-architecture.slide: div
+      h2 Software Architecture
+      p
+        ul
+          li Core: Pylons
+          li Database: PostgreSQL
+          li Database ORM: SQLAlchemy
+          li Template: Jinja2
+          li Search: Solr
+
+    section#pylons-architecture.slide.shout: div
+      h2 and
+        br
+          mark Pylons
+        br
+          | architecture
+
+    section#pylons-as-onion.slide: div
+      p
+        mark.next.pull-right What!?
+        img src="pictures/pylons_as_onion.png" alt="Pylons as Onion"
+
+    section#pylons-book-helps.slide: div
+      h2 
+        a.underline href="http://pylonsbook.com/"
+          Pylons book for the work
+      p
+        ul
+          li Internationalization (i18n)
+          li Routes
+            br
+              | (mapping /this/url to class Controller def action)
+          li Watch out 
+            ,
+            mark
+              | ckan.logic
+            ul
+              li CKAN's own logic behaviors
+
+    section#documents-help.slide: div
+      h2 Read the documentation
+      p
+        There are many useful info on the official sites of
+        SQLAlchemy, Jinja2, and Pylons.
+
+    section#cost-of-running-ckan.slide.shout: div
+      h2 The 
+        ,
+        mark cost
+        ,
+        | of running CKAN 
+
+    section#like-a-startup.slide.shout.small: div
+      h2 Just like running a
+        br
+        mark.next
+          | startup
+
+    section.slide: div
+      h2 Cost on application side:
+      p
+        ol
+          li Setup & Develop
+          li Maintain
+          li.next
+            i.icon.icon-repeat.red
+            ,
+            Goto 1 
+
+    section#out-setup-and-maintenance.slide: div
+      h2 
+        mark Setup & Maintenance!
+      p
+        ol
+          li Linux (& Security)
+          li HTTP Server (Apache or Nginx)
+          li PostgreSQL
+          li Solr
+          li Backup and Disaster-Recovery (DR)
+
+    section#watch-out-development.slide: div
+      h2 Well, watch out
+        ,
+        mark Development!
+      p
+        ol
+          li Pylons
+          li SQLAlchemy
+          li Jinja2
+          li PostgreSQL
+
+    section.slide: div
+      h2 Cost on business side:
+      ul
+        li
+          i.icon.icon-user.red
+          ,
+          Human Resource (HR) is key (as usual).
+        li
+          i.icon.icon-bullhorn.red
+          ,
+          Marketing or no one use it.
+        li
+          i.icon.icon-signal.red
+          ,
+          Monitor performance.
+        li
+          i.icon.icon-book.red
+          ,
+          Educate new [ user | operator | developer | admin ]
+        li.next
+          i.icon.icon-music.red
+          ,
+          Passion & reward
+
+    section.slide: div
+      h2 You'll encounter...
+      ul
+        li
+          mark Dev ops
+        li Search, i18n, ...
+
+    section.slide: div
+      h2 More not mentioned here:
+      ul
+        li Javascript parts
+        li CKAN 2.2 (in alpha)
+
+    section#thank_you.slide.shout: div
+      h2 Thank You
+    
+    p class="badge"
+      a href="https://github.com/keitheis/ckan-intro_zh_TW" Fork me on Github
+
+    <!-- To hide progress bar from entire presentation just remove "progress" element.  -->
+    .progress: div
+
+    script src="shower/shower.min.js" 
+    <!-- Copyright © 2013 Keih Yang, keitheis.org -->
