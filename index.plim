@@ -16,15 +16,7 @@ html lang="en"
       /*** Fundamental styles ***/
       $pylons_red: #e00100;
       $pylons_blue: #124a7e;
-      $grey: #2A2B2D;
-      .red { color: $pylons_red; }
-      .blue { color: $pylons_blue; }
-      .grey { color: $grey; }
-
-      .slide a {
-        border-bottom: none;
-        text-decoration: none;
-      }
+      $grey: #6A6B6D;
 
       @font-face {
         font-family: 'Ubuntu Mono';
@@ -34,10 +26,42 @@ html lang="en"
         font-family: 'Ubuntu';
         src: url('fonts/Ubuntu-R.ttf') format('truetype');
       }
-      section {
+      section.slide {
+        a {
+          border-bottom: none;
+          text-decoration: none;
+        }
+
         font-family: 'Ubuntu', sans-serif;
         code {
           font-family: 'UbuntuMono', monospace;
+        }
+        p, pre {
+          margin: 0 0 20px;
+        }
+        ul {
+          margin-bottom: 0;
+        }
+        pre.code {
+          font-size: 1em;
+          font-family: 'Ubuntu Mono', monospace;
+        }
+        .red { color: $pylons_red; }
+        .blue { color: $pylons_blue; }
+        .grey { color: $grey; }
+
+        /*font-awesome tweak*/
+        i.icon {
+          text-indent: 0;
+          font-style: normal;
+        }
+
+        .smaller {
+          font-size: smaller;
+        }
+        .underline, a.underline {
+          text-decoration: none;
+          border-bottom:0.1em solid;
         }
       }
 
@@ -49,10 +73,12 @@ html lang="en"
         padding-right: 20px;
       }
 
-      /*font-awesome tweak*/
-      i.icon {
-        text-indent: 0;
-        font-style: normal;
+      img.photo_frame {
+          box-shadow:
+            0px 0px 0px 2px rgba(0,0,0,0.6),
+            0px 0px 0px 7px #fff,
+            0px 0px 0px 9px rgba(0,0,0,0.1),
+            3px 3px 4px 8px #555;
       }
 
       .shout {
@@ -66,17 +92,9 @@ html lang="en"
         }
       }
 
-      .smaller {
-        font-size: smaller;
-      }
-      .underline, a.underline {
-        text-decoration: none;
-        border-bottom:0.1em solid;
-      }
-
       /*** Slids styles ***/
 
-      #Cover {
+      #Cover.slide.cover {
         h2 {
           margin: 30px 0 0;
           color: #FFF;
@@ -92,6 +110,10 @@ html lang="en"
           a {
             color:#FFF;
           }
+        }
+        img {
+          position: relative;
+          float: right;
         }
       }
 
@@ -113,10 +135,9 @@ html lang="en"
       h2 CKAN Introduction with zh_TW
       p
         a href="http://quest.keitheis.org" Keith Yang
-          ,
-          i.icon.icon-heart
       p
         | @keitheis
+      img src="pictures/data_community.jpg" alt=""
 
     section#keitheis.slide: div
       h2
@@ -152,7 +173,7 @@ html lang="en"
       p
         ol
           li Installed CKAN?
-          li Internationalization (i18n) and/or Localization (l10n) on CKAN?
+          li Internationalization (i18n) and/or Localization (l10n)?
           li Create Organizations on CKAN?
           li No experience?
           li.next Well, just walking by?
@@ -170,6 +191,9 @@ html lang="en"
         ,
         a href="http://okfn.org/about/"
           Open Knowledge Foundation (OKF)
+
+    section#more-power.slide.shout: div
+      h2 “with great power, comes great responsibility.”
 
     section#good-news.slide.shout: div
       h2 Good news
@@ -195,6 +219,7 @@ html lang="en"
           li Database: PostgreSQL
           li Database ORM: SQLAlchemy
           li Template: Jinja2
+          li I18n and l10n: Babel (& gettext)
           li Search: Solr
 
     section#pylons-architecture.slide.shout: div
@@ -210,6 +235,8 @@ html lang="en"
         img src="pictures/pylons_as_onion.png" alt="Pylons as Onion"
 
     section#pylons-book-helps.slide: div
+      .pull-right
+        img.photo_frame width=120 height=150 src="pictures/pylons_book_cover.jpg" alt=""
       h2 
         a.underline href="http://pylonsbook.com/"
           Pylons book for the work
@@ -219,23 +246,70 @@ html lang="en"
           li Routes
             br
               | (mapping /this/url to class Controller def action)
-          li Watch out 
+          li
+            Watch out 
             ,
             mark
               | ckan.logic
             ul
               li CKAN's own logic behaviors
 
-    section#documents-help.slide: div
-      h2 Read the documentation
+    section#read-the-documents.slide: div
+      h2 Read the official (endless) documents
       p
-        There are many useful info on the official sites of
-        SQLAlchemy, Jinja2, and Pylons.
+        Many useful info on the official sites:
+        ul
+          li SQLAlchemy
+          li Jinja2
+          li Pylons
+          li CKAN
 
-    section#cost-of-running-ckan.slide.shout: div
+    section#core-of-i18n-of-ckan.slide: div
+      h2 The core of i18n of CKAN
+      p
+        a href="http://babel.edgewall.org/"
+          img src="pictures/babel_logo.png" alt="Babel"
+      p
+        “tools to build and work
+        br with gettext message catalogs”
+
+    section#news-of-babel.slide: div
+      h2 The news of Babel
+      p
+        Babel project was frozen on 0.9.6 for 2 years.
+      .pull-right
+        a href="https://github.com/mitsuhiko/babel"
+          i.icon.icon-github
+          ,
+          | mitsuhiko/babel
+      p
+        During EuroPython 2013 @ Florence,
+          Armin Ronacher called for Babel sprint to revive its
+          evolution with features required. (e.g. Python 3 support)
+
+    section#core-of-i18n.slide: div
+      h2 The core of Babel:
+        ,
+        mark gettext
+      pre.code
+        | (python setup.py extract_messages)
+        br
+        | python setup.py update_catalog --locale zh_TW
+        br
+        | python setup.py compile_catalog --locale zh_TW
+      p.next
+        Watch out the language written in database, templates and images.
+
+    section#detail-link.slide.shout: div
+      h2 More on
+        ,
+        a.underline href="https://hackpad.com/Ckan-2.0--Kzt0K2TVigH"
+          | details
+
+    section#challenge-of-running-ckan.slide.shout: div
       h2 The 
         ,
-        mark cost
+        mark challenge
         ,
         | of running CKAN 
 
@@ -245,8 +319,8 @@ html lang="en"
         mark.next
           | startup
 
-    section.slide: div
-      h2 Cost on application side:
+    section.slide#working-on-application: div
+      h2 Working on application
       p
         ol
           li Setup & Develop
@@ -256,9 +330,9 @@ html lang="en"
             ,
             Goto 1 
 
-    section#out-setup-and-maintenance.slide: div
+    section#setup-and-maintenance.slide: div
       h2 
-        mark Setup & Maintenance!
+        Setup & Maintenance
       p
         ol
           li Linux (& Security)
@@ -268,18 +342,17 @@ html lang="en"
           li Backup and Disaster-Recovery (DR)
 
     section#watch-out-development.slide: div
-      h2 Well, watch out
-        ,
-        mark Development!
+      h2 Development
       p
         ol
           li Pylons
           li SQLAlchemy
           li Jinja2
           li PostgreSQL
+          li Babel
 
-    section.slide: div
-      h2 Cost on business side:
+    section.slide#factors-of-business: div
+      h2 Factors of business
       ul
         li
           i.icon.icon-user.red
@@ -303,17 +376,47 @@ html lang="en"
           Passion & reward
 
     section.slide: div
-      h2 You'll encounter...
+      h2 You might encounter...
       ul
+        li Bugs or issues (tickets on trac)
+          ul
+            li Try (to learn)
+              ,
+              a href="http://trac.ckan.org/report"
+                | search trac
+            li CKAN issues moved
+              ,
+              i.icon.icon-hand-right
+              ,
+              a href="https://github.com/okfn/ckan/issues"
+                i.icon.icon-github
+                ,
+                | github
+              | !
         li
-          mark Dev ops
-        li Search, i18n, ...
+          Finding (or being) a
+          ,
+          mark dev ops
+          ,
+          span.grey.next
+            | like an entrepreneur
+        li Javascript issues
+        li.next Finding users(?)
 
     section.slide: div
-      h2 More not mentioned here:
-      ul
-        li Javascript parts
-        li CKAN 2.2 (in alpha)
+      h2 None mentioned here:
+      p
+        ul
+          li Javascript parts
+            ul
+              li e.g. Newly introduced pdf.js
+          li CKAN 2.2 (in alpha)
+            ul
+              li Know where you're
+      pre.code.grey.pull-right
+        | git show
+        br
+        | git branch
 
     section#thank_you.slide.shout: div
       h2 Thank You
