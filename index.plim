@@ -9,7 +9,6 @@ html lang="en"
     meta http-equiv="x-ua-compatible" content="ie=edge"
     link rel="stylesheet" href="shower/themes/ribbon/styles/screen.css"
     link rel="stylesheet" href="pygment_style.css"
-    /*link rel="stylesheet" href="pastie.css"*/
     link rel="stylesheet" href="font-awesome/css/font-awesome.css"
 
     -scss
@@ -319,7 +318,7 @@ html lang="en"
         mark.next
           | startup
 
-    section.slide#working-on-application: div
+    section#working-on-application.slide: div
       h2 Working on application
       p
         ol
@@ -351,7 +350,7 @@ html lang="en"
           li PostgreSQL
           li Babel
 
-    section.slide#factors-of-business: div
+    section#factors-of-business.slide: div
       h2 Factors of business
       ul
         li
@@ -375,7 +374,7 @@ html lang="en"
           ,
           Passion & reward
 
-    section.slide: div
+    section#you-might-encounter.slide: div
       h2 You might encounter...
       ul
         li Bugs or issues (tickets on trac)
@@ -403,7 +402,7 @@ html lang="en"
         li Javascript issues
         li.next Finding users(?)
 
-    section.slide: div
+    section#none-mentioned.slide: div
       h2 None mentioned here:
       p
         ul
